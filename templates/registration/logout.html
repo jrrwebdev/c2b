@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+{% load staticfiles %}
+{% block content %}
+  <div class="py-5 text-center opaque-overlay" style="background-image: url({% static 'img/geladeira.jpg' %})">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-12 text-white">
+          <h1 class="display-3 mb-4">Quero comprar!</h1>
+          <p class="lead mb-5">O site que encontra o preço que você quer pagar.
+            <br>você realizou o logout!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
