@@ -1,10 +1,7 @@
 from django.contrib import admin
-from core.models import Customer, Category, BuyEvent
+from core.models import Customer, BuyEvent, Category
 
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['user', 'name', 'email', 'is_customer']
-
-
-admin.site.register(Customer, CustomerAdmin)
-admin.site.register(Category)
+# Register your models here.
+admin.site.register(Customer)
 admin.site.register(BuyEvent)
+admin.site.register(Category)

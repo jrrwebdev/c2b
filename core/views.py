@@ -1,30 +1,27 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.http import HttpResponseForbidden, HttpResponse
-
-from django.views.generic import CreateView
-
-from core.forms import RegisterCustomerForm
+from .forms import CustomerForm
 
 
 def home(request):
-    return render(request, "index.html")
+    boards = "Contexto"
+    return render(request, 'home.html', {'boards': boards})
 
 
-class RegisterCustomerView(CreateView):
-    form_class = RegisterCustomerForm
-    template_name = "core/register_customer.html"
+def customer_add(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = CustomerForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated():
-            return HttpResponseForbidden()
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = CustomerForm()
 
-        return super(RegisterCustomerView, self).dispatch(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        user = form.save(commit=False)
-        user.save()
-        return HttpResponse('User registered')
-
-
+    return render(request, 'customer_add.html', {'form': form})
