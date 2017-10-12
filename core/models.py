@@ -13,7 +13,7 @@ class Category(models.Model):
 class BuyEvent(models.Model):
     """Class Buy Event - This class is to save data from Buy Events."""
     description = models.CharField(max_length=50)
-    category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category)
     price = models.DecimalField(max_digits=19, decimal_places=2)
     like = models.IntegerField(default=0)
     model_pic = models.ImageField(

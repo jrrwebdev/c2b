@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% csrf_token %}
+
+    <div class="py-5 text-center opaque-overlay" style="background-image: url({% static 'img/geladeira.jpg' %})">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12 text-white">
+                    <h1 class="lead mb-5">Usuario Cadastrado com sucesso</h1>
+
+                    <a href="{% url 'home' %}" class="btn btn-lg btn-primary mx-1">Voltar</a>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -5,9 +5,7 @@ from django.shortcuts import redirect, render
 from .forms import SignUpForm
 
 
-@login_required
 def signup(request):
-
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -16,6 +14,7 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html')
+    context = {'form': form}
+    return render(request, 'signup.html', context)
 
 

@@ -1,4 +1,4 @@
-{% extends 'base_accounts.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Quero Preco Log in{% endblock %}
 
@@ -10,7 +10,7 @@
           <h3 class="card-title">Log in</h3>
           <form method="post" novalidate>
             {% csrf_token %}
-              {{ form }}
+              {{ form.as_p }}
 
             <input type="hidden" name="next" value="{{ next }}">
 
@@ -23,7 +23,7 @@
       </div>
       <div class="text-center py-2">
         <small>
-          <a href="{% url 'password_reset' %}" class="text-muted">Forgot your password?</a>
+          <a href="{% url 'password_reset' %}" class="text-muted">Esqueceu a senha?</a>
         </small>
       </div>
     </div>
