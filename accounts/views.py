@@ -7,15 +7,15 @@ from .forms import SignUpForm
 
 @login_required
 def signup(request):
-    # print("sigunp")
-    # if request.method == 'POST':
-    #     form = SignUpForm(request.POST)
-    #     if form.is_valid():
-    #         user = form.save()
-    #         auth_login(request, user)
-    #         return redirect('home')
-    # else:
-    #     form = SignUpForm()
+
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
     return render(request, 'signup.html')
 
 

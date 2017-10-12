@@ -13,8 +13,8 @@ class CustomerForm(forms.Form):
     address = forms.CharField(label='Endereço', max_length=50)
     city = forms.CharField(label='Cidade', max_length=60)
     state_province = forms.CharField(label='Estado', max_length=2)
-    country = forms.CharField(label='', max_length=50)
-    cnpj_cpf = forms.CharField(label='', max_length=14)
+    country = forms.CharField(label='Pais', max_length=50)
+    cnpj_cpf = forms.CharField(label='CNPJ', max_length=14)
     category = forms.CharField(label='Categoria')
     is_customer = forms.RadioSelect(choices=ROLE_CHOICES)
 
