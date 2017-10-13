@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-    <div class="py-5 text-white opaque-overlay" style="background-image: url({% static '/img/anuncios.jpg' %})">
+    <div class="py-5 text-white opaque-overlay" style="background-image: url({% static '/img/anuncios.jpeg' %})">
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>
@@ -12,57 +12,26 @@
             </div>
         </div>
     </div>
+
+    <table style="width:100%">
+    <tr>
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+        <th>like</th>
+        <th></th>
+    </tr>
+
     {% for anuncio in anuncios %}
+<tr>
+            <td>{{ anuncio.id }} </td>
+            <td>{{ anuncio.description }} </td>
+            <td>{{ anuncio.price }}</td>
+            <td>{{ anuncio.like }}</td>
+            <td><a href="{% url 'likebuyevent' %}" class="btn btn-gray"
+                   style="background-image: url({% static '/img/Ei-like.svg.png' %})"></a></td>
 
-        <p>{{ anuncio.description }}</p>
-        <p>{{ anuncio.price }} </p>
-        <a href="#" class="btn btn-dark">Like</a>
-        <hr>
+
     {% endfor %}
-
-
-    {#     <div class="p-5 gradient-overlay bg-secondary" >#}
-    {#        <div class="container">#}
-    {#            <div class="row">#}
-    {#                <div class="p-3 align-self-center col-md-4">#}
-    {#                    <div class="card">#}
-    {#                        <div class="card-block p-5">#}
-    {#                            <h1><sup>$</sup> {{ anuncio.price }} </h1>#}
-    {#                            <h3>Produto #1</h3>#}
-    {#                            <hr>#}
-    {#                            <p>{{ anuncio.description }}&nbsp;</p>#}
-    {#                            <a href="#" class="btn btn-dark">Subscribe</a>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-
-    {#                <div class="p-3 align-self-center col-md-4">#}
-    {#                    <div class="card">#}
-    {#                        <div class="card-block p-5">#}
-    {#                            <h1><sup>$</sup> 75 </h1>#}
-    {#                            <h3>Premium</h3>#}
-    {#                            <hr>#}
-    {#                            <p>Use all the features and get the maximum out of the app</p>#}
-    {#                            <a href="#" class="btn btn-dark">Subscribe</a>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#    #}
-    {#                <div class="p-3 align-self-center col-md-4">#}
-    {#                    <div class="card">#}
-    {#                        <div class="card-block p-5">#}
-    {#                            <h1><sup>$</sup> 135 </h1>#}
-    {#                            <h3>Pro</h3>#}
-    {#                            <hr>#}
-    {#                            <p>Get the whole pack and forget about everything else</p>#}
-    {#                            <a href="#" class="btn btn-dark">Subscribe</a>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-
-
-
+    </tr>
 {% endblock %}

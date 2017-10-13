@@ -27,6 +27,8 @@ urlpatterns = (
     url(r'^anunciar/', views.anunciar, name='anunciar'),
     url(r'^sucesso/$', views.home, name='sucesso'),
     url(r'^anuncios/$', views.AnunciosListView, name='anuncios'),
+    url(r'^likebuyevent/$', views.LikeBuyEvent, name='likebuyevent'),
+
 
 
     url(r'^signup/$', accounts_views.signup, name='signup'),

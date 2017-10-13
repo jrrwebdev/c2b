@@ -13,4 +13,4 @@ class AnunciarForm(forms.ModelForm):
 
     class Meta:
         model = BuyEvent
-        fields = ('description', 'price', 'category')
+        fields = ('description', 'price', 'category', 'like')
