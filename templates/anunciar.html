@@ -11,6 +11,7 @@
                     <p class="lead mb-4">Digite o produto que deseja comprar</p>
                     <form action="" method="post">
                         {% csrf_token %}
+                        {{ form.errors }}
                         {{ form.as_p }}
                         <input type="submit" value="Criar Anuncio">
                     </form>

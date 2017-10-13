@@ -18,14 +18,17 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from accounts import views as accounts_views
-from core import views as core_views
+from core import views
 
 
 urlpatterns = (
-    url(r'^$', core_views.home, name='home'),
-    url(r'^cadastrar/', core_views.customer_add, name='cadastrar'),
-    url(r'^anunciar/', core_views.anunciar, name='anunciar'),
-    url(r'^sucesso/$', core_views.home, name='sucesso'),
+    url(r'^$', views.home, name='home'),
+    url(r'^cadastrar/', views.customer_add, name='cadastrar'),
+    url(r'^anunciar/', views.anunciar, name='anunciar'),
+    url(r'^sucesso/$', views.home, name='sucesso'),
+    url(r'^anuncios/$', views.AnunciosListView, name='anuncios'),
+
+
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),

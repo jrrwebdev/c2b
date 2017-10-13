@@ -10,9 +10,11 @@
                     <h1 class="text-gray-dark">Registro</h1>
                     <p class="lead mb-4">Digite seus dados formulario de registro</p>
                     <form action="" method="post">
+                        {{ form.errors }}
                         {% csrf_token %}
                         {{ form.as_p }}
                         <input type="submit" value="Criar Anuncio">
+
                     </form>
                 </div>
             </div>

@@ -3,13 +3,15 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 from .forms import CustomerForm, AnunciarForm
+from .models import BuyEvent
 
 
 def home(request):
-    anuncios = "Contexto"
-    return render(request, 'home.html', {'anuncio': anuncios})
+    anuncios = BuyEvent.objects.all()
+    return render(request, 'home.html', {'anuncios': anuncios})
 
-#@login_required
+
+# @login_required
 def customer_add(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -31,6 +33,7 @@ def customer_add(request):
     context = {'form': form}
     return render(request, 'customer.html', {'form': form}, context)
 
+
 @login_required
 def anunciar(request):
     # if this is a POST request we need to process the form data
@@ -48,3 +51,8 @@ def anunciar(request):
         form = AnunciarForm()
     context = {'form': form}
     return render(request, 'anunciar.html', {'form': form}, context)
+
+
+def AnunciosListView(request):
+    anuncios = BuyEvent.objects.all()
+    return render(request, 'anuncios.html', {'anuncios': anuncios})
