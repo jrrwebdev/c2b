@@ -26,7 +26,7 @@ urlpatterns = (
     url(r'^cadastrar/', views.customer_add, name='cadastrar'),
     url(r'^anunciar/', views.anunciar, name='anunciar'),
     url(r'^sucesso/$', views.home, name='sucesso'),
-    url(r'^anuncios/$', views.AnunciosListView, name='anuncios'),
+    url(r'^buyevents/$', views.BuyEventsListView, name='buyevents'),
     url(r'^likebuyevent/$', views.LikeBuyEvent, name='likebuyevent'),
 
 

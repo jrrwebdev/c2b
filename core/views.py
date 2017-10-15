@@ -53,9 +53,9 @@ def anunciar(request):
     return render(request, 'anunciar.html', {'form': form}, context)
 
 
-def AnunciosListView(request):
-    anuncios = BuyEvent.objects.all()
-    return render(request, 'anuncios.html', {'anuncios': anuncios})
+def BuyEventsListView(request):
+    buyevents = BuyEvent.objects.all()
+    return render(request, 'anuncios.html', {'buyevents': buyevents})
 
 
 def LikeBuyEvent(request):
