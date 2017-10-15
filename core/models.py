@@ -1,5 +1,7 @@
+import os
 from django.db import models
 
+from myproject import settings
 
 
 class Category(models.Model):
@@ -16,8 +18,22 @@ class BuyEvent(models.Model):
     category = models.ManyToManyField(Category)
     price = models.DecimalField(max_digits=19, decimal_places=2)
     like = models.IntegerField(default=0)
-    model_pic = models.ImageField(
-        upload_to='pic_folder/', default='img/no-img.jpg')
+    photo = models.ImageField(upload_to='media', blank=True)
+
+    def url(self):
+        # returns a URL for either internal stored or external image url
+        if self.externalURL:
+            return self.externalURL
+        else:
+            # is this the best way to do this??
+            return os.path.join('/', settings.MEDIA_URL, os.path.basename(str(self.photo)))
+
+    def image_tag(self):
+        # used in the admin site model as a "thumbnail"
+        from django.utils.safestring import mark_safe
+        return mark_safe('<img src="{}" width="150" height="150" />'.format(self.url()))
+
+    image_tag.short_description = 'Image'
 
     def __str__(self):
         return self.description
