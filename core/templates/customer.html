@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+
 
 {% block content %}
     <div class="py-5 text-white opaque-overlay" style="background-image: url({% static '/img/registro.jpg' %})">
@@ -10,9 +10,14 @@
                     <h1 class="text-gray-dark">Registro</h1>
                     <p class="lead mb-4">Digite seus dados formulario de registro</p>
                     <form action="" method="post">
-                        {{ form.errors }}
-                        {% csrf_token %}
-                        {{ form.as_p }}
+                        {#                        {{ form.errors }}#}
+                        {#                        {% csrf_token %}#}
+                        {#                        {{ form.as_p }}#}
+                        {% for field in form %}
+                            {{ field.label_tag }}: {{ field }}
+                            {{ field.errors }}
+                        {% endfor %}
+                        {{ form.non_field_errors }}
                         <input type="submit" value="Criar Anuncio">
 
                     </form>
@@ -20,4 +25,6 @@
             </div>
         </div>
     </div>
-{% endblock %}
+
+{% endblock content %}
+
