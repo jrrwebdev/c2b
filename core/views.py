@@ -15,19 +15,11 @@ def home(request):
 def customer_add(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
         form = CustomerForm(request.POST)
-        # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-
             new_customer = form.save()
             messages.success(request, 'Usuario Adicionado com Sucesso')
             return HttpResponseRedirect('sucesso.html')
-
-    # if a GET (or any other method) we'll create a blank form
     else:
         form = CustomerForm()
     context = {'form': form}
@@ -39,8 +31,7 @@ def anunciar(request):
     if request.method == 'POST':
         form = AnunciarForm(request.POST, request.FILES)
         if form.is_valid():
-
-            new_buyevent = form.save()
+            form.save()
             messages.success(request, 'Anuncio Cadastrado com Sucesso')
             return HttpResponseRedirect('/sucesso/')
 
