@@ -1,6 +1,7 @@
 Django
 django-widget-tweaks
 dj-database-url
+django-extensions
 dj-static
 gunicorn
 Pillow
