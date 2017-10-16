@@ -8,21 +8,17 @@
                 <div class="col-md-6">
                     <h1 class="text-gray-dark">Registro</h1>
                     <p class="lead mb-4">Digite seus dados formulario de registro</p>
-
                     <form action="" method="post">
                         {% csrf_token %}
-                        {% for field in form %}
-                            {{ field.label_tag }}: {{ field }}
-                            {{ field.errors }}
-                        {% endfor %}
-                        {{ form.non_field_errors }}
-                        <input type="submit" value="Salvar dados">
-
+                        {{ form.errors }}
+                        <table>
+                            {{ form.as_table }}
+                        </table>
+                        <input type="submit" value="Salvar Dados">
+                        <a href="{% url 'home' %}" class="btn btn-primary ml-2">Cancelar</a>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock content %}

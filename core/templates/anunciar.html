@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
-
+{% load static %}
 {% block content %}
     <div class="py-5 text-white opaque-overlay" style="background-image: url({% static '/img/registro.jpg' %})">
         <div class="container">
@@ -12,8 +11,10 @@
                     <form action="" method="post">
                         {% csrf_token %}
                         {{ form.errors }}
-                        {{ form.as_p }}
-                        <input type="submit" value="Criar Anuncio">
+                        <table>
+                            {{ form.as_table }}
+                        </table>
+                        <input type="submit" value="Salvar Dados">
                         <a href="{% url 'home' %}" class="btn btn-primary ml-2">Cancelar</a>
                     </form>
                 </div>
