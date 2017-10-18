@@ -25,12 +25,8 @@ urlpatterns = (
     url(r'^$', views.home, name='home'),
     #url(r'^cadastrar/', views.customer_add, name='cadastrar'),
     url(r'^cadastrar/', include('core.urls'), name='cadastrar'),
-    url(r'^anunciar/', views.anunciar, name='anunciar'),
-    url(r'^sucesso/$', views.home, name='sucesso'),
     url(r'^buyevents/$', views.BuyEventsListView, name='buyevents'),
     url(r'^likebuyevent/$', views.LikeBuyEvent, name='likebuyevent'),
-
-
 
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),

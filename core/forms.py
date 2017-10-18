@@ -5,7 +5,7 @@ from .models import Customer, BuyEvent
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ('email', 'name', 'category', 'is_customer')
+        fields = ('category', 'is_customer')
 
 class AnunciarForm(forms.ModelForm):
     class Meta:

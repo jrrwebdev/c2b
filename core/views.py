@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
+from django.urls import reverse_lazy
+
 from .forms import CustomerForm, AnunciarForm
 from .models import BuyEvent
 
@@ -19,7 +21,7 @@ def customer_add(request):
         if form.is_valid():
             new_customer = form.save()
             messages.success(request, 'Usuario Adicionado com Sucesso')
-            return HttpResponseRedirect('sucesso.html')
+            return HttpResponseRedirect(reverse_lazy('sucesso'))
     else:
         form = CustomerForm()
     context = {'form': form}
@@ -33,7 +35,7 @@ def anunciar(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Anuncio Cadastrado com Sucesso')
-            return HttpResponseRedirect('/sucesso/')
+            return HttpResponseRedirect(reverse_lazy('sucesso'))
 
     # if a GET (or any other method) we'll create a blank form
     else:

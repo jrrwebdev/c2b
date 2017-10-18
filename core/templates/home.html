@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
         <title>Quero Preco</title>
     {% endblock head %}
 </head>
-
+{%  block content %}
 <body>
     <div class="py-5 text-center opaque-overlay"
          style="background-image: url({% static 'img/geladeira.jpg' %})">
@@ -109,5 +110,5 @@
                         </div>
                     </div>
     </body>
-
+{%  endblock content %}
 </html>

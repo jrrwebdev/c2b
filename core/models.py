@@ -1,7 +1,6 @@
-import os
+from django.contrib.auth.models import User
 from django.db import models
 
-from myproject import settings
 
 
 class Category(models.Model):
@@ -25,7 +24,7 @@ class BuyEvent(models.Model):
         return self.description
 
 
-class Customer(models.Model):
+class Customer(User):
     CLIENTE = 1
     EMPRESA = 2
     ROLE_CHOICES = (
@@ -33,13 +32,13 @@ class Customer(models.Model):
         (EMPRESA, 'Empresa'),
     )
     ''' Class Customer - This class to save data from customer.'''
-    email = models.EmailField(unique=True)
-    name = models.CharField(max_length=60, null=True)
+    #email = models.EmailField(unique=True)
+    #name = models.CharField(max_length=60, null=True)
     address = models.CharField(max_length=50, null=True)
     city = models.CharField(max_length=60, null=True)
     state_province = models.CharField(max_length=30, null=True)
     country = models.CharField(max_length=50, null=True)
-
+    
     cnpj_cpf = models.CharField(max_length=14, null=True)
     category = models.ForeignKey("Category", blank=True)
     is_customer = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
@@ -50,4 +49,4 @@ class Customer(models.Model):
         verbose_name_plural = 'customers'
 
     def __str__(self):
-        return self.name
+        return self.address
