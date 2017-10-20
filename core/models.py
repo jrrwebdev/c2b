@@ -10,6 +10,9 @@ class Category(models.Model):
     def __str__(self):
         return self.description
 
+    def get_fields(self):
+        return [(field, field.value_to_string(self)) for field in Category._meta.fields]
+
 
 class BuyEvent(models.Model):
     """Class Buy Event - This class is to save data from Buy Events."""
