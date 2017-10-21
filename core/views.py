@@ -9,8 +9,12 @@ from .models import BuyEvent
 
 
 def home(request):
-    anuncios = BuyEvent.objects.all()
-    return render(request, 'home.html', {'anuncios': anuncios})
+    meusanuncios = BuyEvent.objects.all()
+    return render(request, 'home.html', {'anuncios': meusanuncios})
+
+def meusanuncios(request):
+    meusanuncios = BuyEvent.objects.all()
+    return render(request, 'anuncios.html', {'anuncios': meusanuncios})
 
 
 # @login_required
@@ -44,9 +48,7 @@ def anunciar(request):
     return render(request, 'anunciar.html', {'form': form}, context)
 
 
-def meusanuncios(request):
-    meusanuncios = BuyEvent.objects.all()
-    return render(request, 'anuncios.html', {'anuncios': meusanuncios})
+
 
 
 def LikeBuyEvent(request):

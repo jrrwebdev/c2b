@@ -5,7 +5,7 @@ from django.db import models
 
 class Category(models.Model):
     """ Class Category - This class to save data from category."""
-    description = models.CharField(max_length=30, null=False)
+    description = models.CharField(max_length=30, null=True)
 
     def __str__(self):
         return self.description
@@ -17,7 +17,7 @@ class Category(models.Model):
 class BuyEvent(models.Model):
     """Class Buy Event - This class is to save data from Buy Events."""
     description = models.CharField(max_length=50)
-    category = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, null=True)
     price = models.DecimalField(max_digits=19, decimal_places=2)
     like = models.IntegerField(default=0)
     photo = models.ImageField(blank=True)
@@ -41,7 +41,6 @@ class Customer(User):
     city = models.CharField(max_length=60, null=True)
     state_province = models.CharField(max_length=30, null=True)
     country = models.CharField(max_length=50, null=True)
-    
     cnpj_cpf = models.CharField(max_length=14, null=True)
     category = models.ForeignKey("Category", blank=True)
     is_customer = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
@@ -52,4 +51,4 @@ class Customer(User):
         verbose_name_plural = 'customers'
 
     def __str__(self):
-        return self.address
+        return self.username
