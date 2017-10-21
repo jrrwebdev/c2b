@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
               type="text/css">
         <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
@@ -29,7 +30,7 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-12 text-white">
-                    <h1 class="display-3 mb-4">Quero comprar!</h1>
+                    <h1 class="display-3 mb-4 title">Quero comprar!</h1>
                     <p class="lead mb-5">O site que encontra o preço que você quer pagar.
                         <br>Basta fazer o cadastro e criar seu anuncio, as empresas virão atrás de você!</p>
                     {% if user.is_authenticated %}
@@ -44,7 +45,7 @@
                     {% else %}
                         <a href="{% url 'login' %}" class="btn btn-lg mx-1 btn-secondary">Login</a>
                         <a href="{% url 'signup' %}" class="btn btn-lg mx-1 btn-secondary">Novo Usuario</a>
-                        {#                        <a href="{% url 'anunciar' %}" class="btn btn-lg btn-primary mx-1">anunciar</a>#}
+                        {#                        <a href="{% url 'anunciar' %}" class="btn btn-lg btn-primary mx-1 teste">Anunciar</a>#}
                     {% endif %}
                     {% if messages %}
                         <ul class="messages">
