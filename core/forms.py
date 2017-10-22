@@ -35,4 +35,4 @@ class CustomerForm(forms.ModelForm):
 class AnunciarForm(forms.ModelForm):
     class Meta:
         model = BuyEvent
-        fields = ('description', 'category', 'price', 'like', 'photo')
+        fields = ('name', 'description', 'category', 'price', 'like', 'photo')

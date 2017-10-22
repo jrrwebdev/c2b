@@ -16,7 +16,8 @@ class Category(models.Model):
 
 class BuyEvent(models.Model):
     """Class Buy Event - This class is to save data from Buy Events."""
-    description = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=False)
+    description = models.TextField(blank=True)
     category = models.ForeignKey(Category, null=True)
     price = models.DecimalField(max_digits=19, decimal_places=2)
     like = models.IntegerField(default=0)
@@ -24,7 +25,8 @@ class BuyEvent(models.Model):
 
 
     def __str__(self):
-        return self.description
+        return self.name
+
 
 
 class Customer(User):
