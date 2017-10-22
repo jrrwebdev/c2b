@@ -1,12 +1,14 @@
 from django import forms
 from .models import Customer, BuyEvent
+from utils.lists import CUSTOMER_TYPE, IS_CUSTOMER
 
 
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ('category',
-                  'is_customer',
+        fields = ('is_customer',
+                  'person_type',
+                  'category',
                   'first_name',
                   'last_name',
                   'email',
@@ -14,11 +16,12 @@ class CustomerForm(forms.ModelForm):
                   'city',
                   'state_province',
                   'country',
-                  'cnpj_cpf', )
+           )
 
         labels = {
             'category': ('Categoria do produto'),
-            'is_customer': ('Tipe de Pessoa'),
+            'is_customer': ('Tipo de Cliente'),
+            'person_type': ('Tipo de Pessoa'),
             'username': ('Nome do usuario (login)'),
             'first_name': ('Primeiro Nome:'),
             'last_name': ('Sobrenome'),
@@ -27,9 +30,8 @@ class CustomerForm(forms.ModelForm):
             'city': ('Cidade '),
             'state_province': ('Estado'),
             'country': ('Pais'),
-            'cnpj_cpf': ('CPF/CNPJ'),
-
         }
+        exclude = ['password']
 
 
 class AnunciarForm(forms.ModelForm):

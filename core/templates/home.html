@@ -383,17 +383,15 @@
                                 <div class="row">
                                     <div class="col-md-5 col-sm-12 col-xs-12">
                                         <div class="product-image">
-                                            <img src="images/products/p1.png" alt="194x228" class="img-responsive">
-                                            <span class="tag2 sale">
-							Oferta
-						</span>
+                                            <img src="{{ anuncio.photo }}" alt="194x228" class="img-responsive">
+                                            <span class="tag2 sale">Oferta</span>
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-sm-12 col-xs-12">
                                         <div class="product-deatil">
                                             <h5 class="name">
                                                 <a href="#">
-                                                    {{ anuncio.description }}<span>{{ anuncio.category }}</span>
+                                                    {{ anuncio.name }}<span>{{ anuncio.category }}</span>
                                                 </a>
                                             </h5>
                                             <p class="price-container">
@@ -402,7 +400,7 @@
                                             <span class="tag1"></span>
                                         </div>
                                         <div class="description">
-                                            <p> Descricao do Produto colocar no model </p>
+                                            <p> {{ anuncio.name }}</p>
                                         </div>
                                         <div class="product-info smart-form">
                                             <div class="row">

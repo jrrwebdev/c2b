@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from utils.lists import CUSTOMER_TYPE, IS_CUSTOMER
 
 
 class Category(models.Model):
@@ -30,27 +30,27 @@ class BuyEvent(models.Model):
 
 
 class Customer(User):
-    CLIENTE = 1
-    EMPRESA = 2
-    ROLE_CHOICES = (
-        (CLIENTE, 'Cliente'),
-        (EMPRESA, 'Empresa'),
-    )
     ''' Class Customer - This class to save data from customer.'''
-    #email = models.EmailField(unique=True)
-    #name = models.CharField(max_length=60, null=True)
+    category = models.ForeignKey("Category", blank=True)
     address = models.CharField(max_length=50, null=True)
     city = models.CharField(max_length=60, null=True)
     state_province = models.CharField(max_length=30, null=True)
     country = models.CharField(max_length=50, null=True)
-    cnpj_cpf = models.CharField(max_length=14, null=True)
-    category = models.ForeignKey("Category", blank=True)
-    is_customer = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
-
+    cpf = models.CharField('CPF', max_length=11,
+                           unique=True, null=True, blank=True)
+    rg = models.CharField('RG', max_length=11, null=True, blank=True)
+    cnpj = models.CharField('CNPJ', max_length=14,
+                            unique=True, null=True, blank=True)
+    ie = models.CharField(u'inscrição estadual',
+                          max_length=12, null=True, blank=True)
+    person_type = models.CharField(
+        'Fisica ou Juridica', max_length=1, choices=CUSTOMER_TYPE, default='F')
+    is_customer = models.CharField(
+        'tipo de cliente', max_length=1, choices=IS_CUSTOMER, blank=True)
 
     class Meta:
         verbose_name = 'customer'
         verbose_name_plural = 'customers'
 
     def __str__(self):
-        return self.username
+        return self.address
