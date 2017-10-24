@@ -38,7 +38,7 @@
                     <br>fique atento no seu email, ao encontrarmos um empresa, enviaremos um email</p>
 
                 {% if user.is_authenticated %}
-                    <p class="lead mb-5">Olá {{ user.first_name }}  seja  bem-vindo!</p>
+                    <p class="lead mb-5">Olá {{ user.first_name }} seja bem-vindo!</p>
                 {% else %}
                     <p class="lead mb-5">Parece que você ainda não fez login no site!</p>
                 {% endif %}
@@ -79,15 +79,19 @@
                                     <div class="product-info smart-form">
                                         <div class="row">
                                             <div class="col-md-12">
-<h4>{{ customer.is_customer }} </h4>
-                                                {% if user.is_authenticated and customer.is_customer == 'V'%}
-                                                <a href="javascript:void(0);" class="btn btn-primary">Eu Vendo Isso hein!</a>
-                                                <a href="javascript:void(0);" class="btn btn-primary">Fazer Contra-proposta</a>
-                                                    {% else %}
+
+                                                {% if user.is_authenticated and customer.is_customer == 'V' %}
+                                                    <a href="javascript:void(0);" class="btn btn-primary">Eu Vendo Isso
+                                                        hein!</a>
+                                                    <a href="javascript:void(0);" class="btn btn-primary">Fazer
+                                                        Contra-proposta</a>
+                                                {% else %}
                                                     {% if user.is_authenticated %}
-                                                <a href="javascript:void(0);" class="btn btn-primary">Editar Anuncio</a>
-                                                <a href="javascript:void(0);" class="btn btn-primary">Verificar Propostas</a>
-{% endif %}
+                                                        <a href="javascript:void(0);" class="btn btn-primary">Editar
+                                                            Anuncio</a>
+                                                        <a href="javascript:void(0);" class="btn btn-primary">Verificar
+                                                            Propostas</a>
+                                                    {% endif %}
                                                 {% endif %}
 
                                             </div>
