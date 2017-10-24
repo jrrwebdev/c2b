@@ -16,7 +16,7 @@ class CustomerForm(forms.ModelForm):
                   'city',
                   'state_province',
                   'country',
-           )
+                  )
 
         labels = {
             'category': ('Categoria do produto'),
@@ -31,10 +31,17 @@ class CustomerForm(forms.ModelForm):
             'state_province': ('Estado'),
             'country': ('Pais'),
         }
-        exclude = ['password']
+
 
 
 class AnunciarForm(forms.ModelForm):
     class Meta:
         model = BuyEvent
-        fields = ('name', 'description', 'category', 'price', 'like', 'photo')
+        fields = ('name', 'category', 'price', 'photo')
+        labels = {
+            'name': ('Produto Desejado'),
+            'category': ('Categoria Produto'),
+            'description': ('Descricao'),
+            'price': ('Preco Desejado'),
+            'photo': ('Fotografia')
+        }
