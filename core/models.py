@@ -53,4 +53,4 @@ class Customer(User):
         verbose_name_plural = 'customers'
 
     def __str__(self):
-        return self.address
+        return self.username
