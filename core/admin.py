@@ -7,7 +7,7 @@ class BuyEventAdmin(admin.ModelAdmin):
 
 class CustomerAdmin(admin.ModelAdmin):
     # explicitly reference fields to be shown, note image_tag is read-only
-    fields = ('category','person_type', 'is_customer', 'first_name', 'last_name', 'address', 'city', 'state_province', 'country' , 'rg', 'cnpj', 'ie')
+    fields = ('username', 'category','person_type', 'is_customer', 'first_name', 'last_name', 'address', 'city', 'state_province', 'country' , 'rg', 'cnpj', 'ie')
 
 
 admin.site.register(Customer, CustomerAdmin)

@@ -5,12 +5,13 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 
 from .forms import CustomerForm, AnunciarForm
-from .models import BuyEvent
+from .models import BuyEvent, Customer
 
 
 def home(request):
     meusanuncios = BuyEvent.objects.all()
-    return render(request, 'home.html', {'anuncios': meusanuncios})
+    customercontext = Customer.objects.all()
+    return render(request, 'home.html', {'anuncios': meusanuncios}, {'customer': customercontext})
 
 def meusanuncios(request):
     meusanuncios = BuyEvent.objects.all()

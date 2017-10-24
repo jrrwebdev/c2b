@@ -32,10 +32,10 @@ class BuyEvent(models.Model):
 class Customer(User):
     ''' Class Customer - This class to save data from customer.'''
     category = models.ForeignKey("Category", blank=True)
-    address = models.CharField(max_length=50, null=True)
-    city = models.CharField(max_length=60, null=True)
-    state_province = models.CharField(max_length=30, null=True)
-    country = models.CharField(max_length=50, null=True)
+    address = models.CharField(max_length=50, null=False)
+    city = models.CharField(max_length=60, null=False)
+    state_province = models.CharField(max_length=30, null=False)
+    country = models.CharField(max_length=50, null=False)
     cpf = models.CharField('CPF', max_length=11,
                            unique=True, null=True, blank=True)
     rg = models.CharField('RG', max_length=11, null=True, blank=True)
@@ -46,11 +46,11 @@ class Customer(User):
     person_type = models.CharField(
         'Fisica ou Juridica', max_length=1, choices=CUSTOMER_TYPE, default='F')
     is_customer = models.CharField(
-        'tipo de cliente', max_length=1, choices=IS_CUSTOMER, blank=True)
+        'tipo de cliente', max_length=1, choices=IS_CUSTOMER, default='C', blank=True)
 
     class Meta:
         verbose_name = 'customer'
         verbose_name_plural = 'customers'
 
     def __str__(self):
-        return self.username
+        return str(self.first_name + ' ' + self.last_name)
