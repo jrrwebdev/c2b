@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
               type="text/css">
-         <link rel="stylesheet" href="/css/produtos.css"
+        <link rel="stylesheet" href="/css/produtos.css"
               type="text/css">
         <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -27,104 +27,84 @@
 </head>
 {% block content %}
     <body>
-{#    <div class="py-5 text-center opaque-overlay" style="background-image: url({% static 'img/geladeira.jpg' %})" >#}
-{#        <div class="container py-5">#}
-{#            <div class="row">#}
-{#                <div class="col-md-12 text-white">#}
-{#                    <h1 class="display-3 mb-4">Quero comprar!</h1>#}
-{#                    <p class="lead mb-5">O site que encontra o preço que você quer pagar.#}
-{#                        <br>Basta fazer o cadastro e criar seu anuncio, as empresas virão atrás de você!</p>#}
-{#                    {% if user.is_authenticated %}#}
-{#                        <p class="lead mb-5">Olá seja bem-vindo! {{ user.username }}</p>#}
-{#                    {% else %}#}
-{#                        <p class="lead mb-5">Parece que você ainda não fez login no site!</p>#}
-{#                    {% endif %}#}
-{#                    {% if user.is_authenticated %}#}
-{#                        <a href="{% url 'anunciar' %}" class="btn btn-lg btn-primary mx-1">Anunciar</a>#}
-{#                        <a href="{% url 'customer_add' %}" class="btn btn-lg btn-primary mx-1">Completar Cadastro</a>#}
-{##}
-{#                    {% else %}#}
-{#                        <a href="{% url 'login' %}" class="btn btn-lg mx-1 btn-secondary">Login</a>#}
-{#                        <a href="{% url 'signup' %}" class="btn btn-lg mx-1 btn-secondary">Novo Usuario</a>#}
-                        {#                        <a href="{% url 'anunciar' %}" class="btn btn-lg btn-primary mx-1">anunciar</a>#}
-{#                    {% endif %}#}
-{#                    {% if messages %}#}
-{#                        <ul class="messages">#}
-{#                            {% for message in messages %}#}
-{#                                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>#}
-{#                            {% endfor %}#}
-{#                        </ul>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
 
     <div class="py-5 text-center "
-         <!--style="background-image: url({% static 'img/anuncios.jpeg' %})" -->
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="display-3 mb-4">Anuncios</h1>
-                    <p class="lead mb-5">Veja suas ofertas publicadas.
-                        <br>fique atento no seu email, ao encontrarmos um empresa, enviaremos um email</p>
+    <!--style="background-image: url({% static 'img/anuncios.jpeg' %})" -->
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-3 mb-4">Anuncios</h1>
+                <p class="lead mb-5">Veja suas ofertas publicadas.
+                    <br>fique atento no seu email, ao encontrarmos um empresa, enviaremos um email</p>
 
-                    {% for anuncio in anuncios %}
+                {% if user.is_authenticated %}
+                    <p class="lead mb-5">Olá seja  {{ user.first_name }} bem-vindo!</p>
+                {% else %}
+                    <p class="lead mb-5">Parece que você ainda não fez login no site!</p>
+                {% endif %}
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% for anuncio in anuncios %}
 
-                        <div class="col-xs-12 col-md-6">
-                            <!-- First product box start here-->
-                            <div class="prod-info-main prod-wrap clearfix">
-                                <div class="row">
-                                    <div class="col-md-5 col-sm-12 col-xs-12">
-                                        <div class="product-image">
-                                            <img src="{{ anuncio.photo }}" alt="194x228" class="img-responsive">
-                                            <span class="tag2 sale">Oferta</span>
-                                        </div>
+                    <div class="col-xs-12 col-md-6">
+                        <!-- First product box start here-->
+                        <div class="prod-info-main prod-wrap clearfix">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <div class="product-image">
+                                        <img src="{{ anuncio.photo }}" alt="194x228" class="img-responsive">
+                                        <span class="tag2 sale">Oferta</span>
                                     </div>
-                                    <div class="col-md-7 col-sm-12 col-xs-12">
-                                        <div class="product-deatil">
-                                            <h5 class="name">
-                                                <a href="#">
-                                                    {{ anuncio.name }}<span>{{ anuncio.category }}</span>
-                                                </a>
-                                            </h5>
-                                            <p class="price-container">
-                                                <span>{{ anuncio.price }}</span>
-                                            </p>
-                                            <span class="tag1"></span>
-                                        </div>
-                                        <div class="description">
-                                            <p> {{ anuncio.name }}</p>
-                                        </div>
-                                        <div class="product-info smart-form">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <a href="javascript:void(0);" class="btn btn-danger">Eu Vendo!</a>
-                                                    <a href="javascript:void(0);" class="btn btn-danger">Fazer Contra-proposta</a>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="rating">  {{ anuncio.like }}
-                                                        <label for="stars-rating-5"><i
-                                                                class="fa fa-star text-danger"></i></label>
-                                                        <label for="stars-rating-4"><i
-                                                                class="fa fa-star text-danger"></i></label>
-                                                        <label for="stars-rating-3"><i
-                                                                class="fa fa-star text-danger"></i></label>
-                                                        <label for="stars-rating-2"><i
-                                                                class="fa fa-star text-warning"></i></label>
-                                                        <label for="stars-rating-1"><i
-                                                                class="fa fa-star text-warning"></i></label>
-                                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <div class="product-deatil">
+                                        <h5 class="name">
+                                            <a href="#">
+                                                {{ anuncio.name }}<span>{{ anuncio.category }}</span>
+                                            </a>
+                                        </h5>
+                                        <p class="price-container">
+                                            <span>{{ anuncio.price }}</span>
+                                        </p>
+                                        <span class="tag1"></span>
+                                    </div>
+                                    <div class="description">
+                                        <p> {{ anuncio.name }}</p>
+                                    </div>
+                                    <div class="product-info smart-form">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="javascript:void(0);" class="btn btn-danger">Eu Vendo!</a>
+                                                <a href="javascript:void(0);" class="btn btn-danger">Fazer
+                                                    Contra-proposta</a>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="rating">  {{ anuncio.like }}
+                                                    <label for="stars-rating-5"><i
+                                                            class="fa fa-star text-danger"></i></label>
+                                                    <label for="stars-rating-4"><i
+                                                            class="fa fa-star text-danger"></i></label>
+                                                    <label for="stars-rating-3"><i
+                                                            class="fa fa-star text-danger"></i></label>
+                                                    <label for="stars-rating-2"><i
+                                                            class="fa fa-star text-warning"></i></label>
+                                                    <label for="stars-rating-1"><i
+                                                            class="fa fa-star text-warning"></i></label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- end product -->
                         </div>
-                    {% endfor %}
+                        <!-- end product -->
+                    </div>
+                {% endfor %}
 
     </body>
 {% endblock content %}
