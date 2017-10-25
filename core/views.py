@@ -11,6 +11,7 @@ from .models import BuyEvent, Customer
 def home(request):
     meusanuncios = BuyEvent.objects.all()
     customercontext = Customer.objects.all()
+    print("Cust", customercontext)
     return render(request, 'home.html', {'anuncios': meusanuncios}, {'customer': customercontext})
 
 def meusanuncios(request):

@@ -57,7 +57,7 @@
                             <div class="row">
                                 <div class="col-md-5 col-sm-12 col-xs-12">
                                     <div class="product-image">
-                                        <img src="{{ anuncio.photo }}" alt="194x228" class="img-responsive">
+                                        <img src="{{ MEDIA_ROOT }}{{ anuncio.photo }}" alt="194x228" class="img-responsive">
                                         <span class="tag2 sale">Oferta</span>
                                     </div>
                                 </div>
@@ -80,18 +80,19 @@
                                         <div class="row">
                                             <div class="col-md-12">
 
-                                                {% if user.is_authenticated and customer.is_customer == 'V' %}
+                                                {% if user.is_authenticated %}
+                                                   {% if customer.is_customer == 'V' %}
                                                     <a href="javascript:void(0);" class="btn btn-primary">Eu Vendo Isso
                                                         hein!</a>
                                                     <a href="javascript:void(0);" class="btn btn-primary">Fazer
                                                         Contra-proposta</a>
                                                 {% else %}
-                                                    {% if user.is_authenticated %}
+
                                                         <a href="javascript:void(0);" class="btn btn-primary">Editar
                                                             Anuncio</a>
                                                         <a href="javascript:void(0);" class="btn btn-primary">Verificar
                                                             Propostas</a>
-                                                    {% endif %}
+                                                   {% endif %}
                                                 {% endif %}
 
                                             </div>

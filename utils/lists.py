@@ -5,9 +5,10 @@ CUSTOMER_TYPE = (
 )
 
 IS_CUSTOMER = (
-    ('v', 'vendedor'),
-    ('c', 'comprador'),
+    ('V', 'vendedor'),
+    ('C', 'comprador'),
 )
+
 
 GENDER = [('M', 'masculino'), ('F', 'feminino')]
 
