@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
+<style>
+
+.helptext{
+  visibility: hidden;
+}
+
+</style>
 
 {% block content %}
   <div class="row justify-content-center">
@@ -10,7 +17,7 @@
           <h3 class="card-title">Cadastro de Vendedor</h3>
           <form method="post" >
             {% csrf_token %}
-            {{ form.as_ul }}
+            {{ form.as_p }}
             <button type="submit" class="btn btn-primary btn-block">Criando Usuario</button>
           </form>
         </div>

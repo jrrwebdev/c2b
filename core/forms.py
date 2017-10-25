@@ -52,8 +52,7 @@ class BuyerForm(UserCreationForm):
 
         labels = {
             'username': ('Nome do usuario (login)'),
-            'first_name': ('Primeiro Nome:'),
-            'last_name': ('Sobrenome'),
+            'name': ('Nome'),
             'email': ('Email'),
             'address': ('Endereço'),
             'city': ('Cidade '),

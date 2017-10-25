@@ -7,7 +7,7 @@ class BuyEventAdmin(admin.ModelAdmin):
 
 class BuyerAdmin(admin.ModelAdmin):
     ''' Comprador.'''
-    fields = ('username',  'first_name', 'last_name', 'address', 'city', 'state_province', 'country' , 'cpf', 'rg')
+    fields = ('name',  'email', 'first_name', 'last_name', 'address', 'city', 'state_province', 'country' , 'cpf', 'rg')
 
 class SalerAdmin(admin.ModelAdmin):
     ''' Vendedor.'''

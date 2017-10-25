@@ -50,7 +50,7 @@ class Buyer(User):
         verbose_name_plural = 'compradores'
 
     def __str__(self):
-        return str(self.first_name + ' ' + self.last_name)
+        return str(self.email)
 
 
 class BuyEvent(models.Model):
