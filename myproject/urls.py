@@ -17,17 +17,15 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
-from accounts import views as accounts_views
-from core import views
+# from accounts import views as accounts_views
+from core.views import home
 
 
 urlpatterns = (
-    url(r'^$', views.home, name='home'),
-    #url(r'^cadastrar/', views.customer_add, name='cadastrar'),
-    url(r'^cadastrar/', include('core.urls'), name='cadastrar'),
+    url(r'^$', home, name='home'),
+    url(r'^novousuario/', include('core.urls'), name='novousuario'),
 
 
-    url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 

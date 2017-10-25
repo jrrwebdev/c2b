@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="py-5 text-white opaque-overlay" style="background-image: url({% static '/img/anuncios.jpeg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h1 class="text-gray-dark">Perfil</h1>
+                    <p class="lead mb-4">Escolha o seu!</p>
+                    <div><a href="{% url 'signupcomprador' %}" class="btn btn-lg mx-1 btn-secondary">Comprador</a>
+                         <a href="{% url 'signupvendedor' %}" class="btn btn-lg mx-1 btn-secondary">Vendedor</a></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
