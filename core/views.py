@@ -6,12 +6,19 @@ from django.urls import reverse_lazy
 
 from core import forms
 from core.forms import CompradorForm, VendedorForm, AnunciarForm
-from core.models import EventoCompra, Vendedor
+from core.models import EventoCompra, Vendedor, Comprador, User
 
 
 def home(request):
     meusanuncios = EventoCompra.objects.all()
-    return render(request, 'home.html', {'anuncios': meusanuncios})
+    lista_v = Vendedor.objects.filter(username=request.user.username)
+    lista_c = Comprador.objects.filter(username=request.user.username)
+    if lista_v.count() == 0:
+        perfil = 'comprador'
+    else:
+        perfil = 'vendedor'
+
+    return render(request, 'home.html', {'anuncios': meusanuncios, 'perfil': perfil})
 
 
 def meusanuncios(request):

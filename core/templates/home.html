@@ -28,111 +28,111 @@
 {% block content %}
     <body>
 
-    <div class="py-5 text-center "
-    <!--style="background-image: url({% static 'img/anuncios.jpeg' %})" -->
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="display-3 mb-4">Anuncios</h1>
-                <p class="lead mb-5">Veja suas ofertas publicadas.
-                    <br>fique atento no seu email, ao encontrarmos um empresa, enviaremos um email</p>
+    <div class="py-5 text-center ">
+        <!--style="background-image: url({% static 'img/anuncios.jpeg' %})" -->
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="display-3 mb-4">Anuncios</h1>
+                    <p class="lead mb-5">Veja suas ofertas publicadas.
+                        <br>fique atento no seu email, ao encontrarmos um empresa, enviaremos um email</p>
 
-                {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
 
-                    {% if anuncio.comprador != user.email %}
-                        <p class="lead mb-5">Olá vendedor {{ vendedores.razaosocial }} seja bem-vindo!</p>
+
+                        {% if perfil == 'comprador' %}
+                            <p class="lead mb-5">Olá comprador {{ user.username }} seja bem-vindo!</p>
+                        {% else %}
+                            <p class="lead mb-5">Olá vendedor {{ user.username }} seja bem-vindo!</p>
+                        {% endif %}
                     {% else %}
+                        <p class="lead mb-5">Parece que você ainda não fez login no site!</p>
 
-                        <p class="lead mb-5">Olá {{ user.first_name }} seja bem-vindo!</p>
                     {% endif %}
-                {% else %}
-                    <p class="lead mb-5">Parece que você ainda não fez login no site!</p>
 
-                {% endif %}
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% for anuncio in anuncios %}
 
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                {% for anuncio in anuncios %}
-
-                    <div class="col-xs-12 col-md-6">
-                        <!-- First product box start here-->
-                        <div class="prod-info-main prod-wrap clearfix">
-                            <div class="row">
-                                <div class="col-md-5 col-sm-12 col-xs-12">
-                                    <div class="product-image">
-                                        <img src="{{ MEDIA_ROOT }}{{ anuncio.imagemproduto }}" alt="194x228"
-                                             class="img-responsive">
-                                        <span class="tag2 sale">Oferta</span>
+                        <div class="col-xs-12 col-md-6">
+                            <!-- First product box start here-->
+                            <div class="prod-info-main prod-wrap clearfix">
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-12 col-xs-12">
+                                        <div class="product-image">
+                                            <img src="{{ MEDIA_ROOT }}{{ anuncio.imagemproduto }}" alt="194x228"
+                                                 class="img-responsive">
+                                            <span class="tag2 sale">Oferta</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-7 col-sm-12 col-xs-12">
-                                    <div class="product-detail">
-                                        <h5> {{ anuncio.categoriaproduto }} </h5>
+                                    <div class="col-md-7 col-sm-12 col-xs-12">
+                                        <div class="product-detail">
+                                            <h5> {{ anuncio.categoriaproduto }} </h5>
 
 
-                                        <h5 class="name">
-                                            <a href="#">
-                                                {{ anuncio.nomeproduto }}<span></span>
-                                            </a>
-                                        </h5>
-                                        <p class="price-container">
-                                            <span>{{ anuncio.preco }}</span>
-                                        </p>
-                                        <span class="tag1"></span>
-                                    </div>
-                                    <div class="description">
-                                        <p> {{ anuncio.descricao }}</p>
-                                    </div>
-                                    <div class="product-info smart-form">
-                                        <div class="row">
-                                            <div class="col-md-12">
+                                            <h5 class="name">
+                                                <a href="#">
+                                                    {{ anuncio.nomeproduto }}<span></span>
+                                                </a>
+                                            </h5>
+                                            <p class="price-container">
+                                                <span>{{ anuncio.preco }}</span>
+                                            </p>
+                                            <span class="tag1"></span>
+                                        </div>
+                                        <div class="description">
+                                            <p> {{ anuncio.descricao }}</p>
+                                        </div>
+                                        <div class="product-info smart-form">
+                                            <div class="row">
+                                                <div class="col-md-12">
 
-                                                {% if user.is_authenticated %}
-                                                    {#                                                    <h1> Comprador {{ anuncio.comprador }}{{ user.email }}</h1>#}
-                                                    {% if anuncio.comprador != user.email %}
+                                                    {% if user.is_authenticated %}
+                                                        {#                                                    <h1> Comprador {{ anuncio.comprador }}{{ user.email }}</h1>#}
+                                                        {% if perfil == 'comprador' %}
+                                                            <a href="javascript:void(0);" class="btn btn-primary">Editar
+                                                                Anuncio</a>
+                                                            <a href="javascript:void(0);" class="btn btn-primary">Verificar
+                                                                Propostas</a>
+                                                        {% else %}
+                                                            <a href="javascript:void(0);" class="btn btn-primary">Eu
+                                                                Vendo
+                                                                Isso
+                                                                hein!</a>
+                                                            <a href="javascript:void(0);" class="btn btn-primary">Fazer
+                                                                Contra-proposta</a>
+                                                        {% endif %}
 
-                                                        <a href="javascript:void(0);" class="btn btn-primary">Eu Vendo
-                                                            Isso
-                                                            hein!</a>
-                                                        <a href="javascript:void(0);" class="btn btn-primary">Fazer
-                                                            Contra-proposta</a>
-                                                    {% else %}
-                                                        <a href="javascript:void(0);" class="btn btn-primary">Editar
-                                                            Anuncio</a>
-                                                        <a href="javascript:void(0);" class="btn btn-primary">Verificar
-                                                            Propostas</a>
                                                     {% endif %}
 
-                                                {% endif %}
-
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="rating">  {{ anuncio.facebook_likes }}
-                                                    <label for="stars-rating-5"><i
-                                                            class="fa fa-star text-danger"></i></label>
-                                                    <label for="stars-rating-4"><i
-                                                            class="fa fa-star text-danger"></i></label>
-                                                    <label for="stars-rating-3"><i
-                                                            class="fa fa-star text-danger"></i></label>
-                                                    <label for="stars-rating-2"><i
-                                                            class="fa fa-star text-warning"></i></label>
-                                                    <label for="stars-rating-1"><i
-                                                            class="fa fa-star text-warning"></i></label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="rating">  {{ anuncio.facebook_likes }}
+                                                        <label for="stars-rating-5"><i
+                                                                class="fa fa-star text-danger"></i></label>
+                                                        <label for="stars-rating-4"><i
+                                                                class="fa fa-star text-danger"></i></label>
+                                                        <label for="stars-rating-3"><i
+                                                                class="fa fa-star text-danger"></i></label>
+                                                        <label for="stars-rating-2"><i
+                                                                class="fa fa-star text-warning"></i></label>
+                                                        <label for="stars-rating-1"><i
+                                                                class="fa fa-star text-warning"></i></label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- end product -->
                         </div>
-                        <!-- end product -->
-                    </div>
-                {% endfor %}
+                    {% endfor %}
 
     </body>
 {% endblock content %}
