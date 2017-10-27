@@ -38,8 +38,6 @@
                         <br>fique atento no seu email, ao encontrarmos um empresa, enviaremos um email</p>
 
                     {% if user.is_authenticated %}
-
-
                         {% if perfil == 'comprador' %}
                             <p class="lead mb-5">Olá comprador {{ user.username }} seja bem-vindo!</p>
                         {% else %}
@@ -73,8 +71,6 @@
                                     <div class="col-md-7 col-sm-12 col-xs-12">
                                         <div class="product-detail">
                                             <h5> {{ anuncio.categoriaproduto }} </h5>
-
-
                                             <h5 class="name">
                                                 <a href="#">
                                                     {{ anuncio.nomeproduto }}<span></span>
@@ -100,10 +96,8 @@
                                                             <a href="javascript:void(0);" class="btn btn-primary">Verificar
                                                                 Propostas</a>
                                                         {% else %}
-                                                            <a href="javascript:void(0);" class="btn btn-primary">Eu
-                                                                Vendo
-                                                                Isso
-                                                                hein!</a>
+                                                            <a href="{% url 'propostas' %}" class="btn btn-primary">Eu
+                                                                Vendo!</a>
                                                             <a href="javascript:void(0);" class="btn btn-primary">Fazer
                                                                 Contra-proposta</a>
                                                         {% endif %}

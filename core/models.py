@@ -37,7 +37,7 @@ class Vendedor(User):
 class Comprador(User):
     ''' Comprador.'''
     nome = models.CharField(max_length=50, null=True)
-    endereco = models.CharField(max_length=50, null=True,  blank=True)
+    endereco = models.CharField(max_length=50, null=True, blank=True)
     cidade = models.CharField(max_length=60, null=True, blank=True)
     estado = models.CharField(max_length=30, null=True, blank=True)
     pais = models.CharField(max_length=50, null=True, blank=True)
@@ -69,3 +69,18 @@ class EventoCompra(models.Model):
 
     def __str__(self):
         return self.nomeproduto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

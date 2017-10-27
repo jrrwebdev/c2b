@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
 
     #myapps
+
     'accounts',
     'core',
+    'propostas',
 
     'django.contrib.admin',
 

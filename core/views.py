@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from core import forms
 from core.forms import CompradorForm, VendedorForm, AnunciarForm
 from core.models import EventoCompra, Vendedor, Comprador, User
+from propostas.models import Propostas
 
 
 def home(request):
@@ -24,6 +25,17 @@ def home(request):
 def meusanuncios(request):
     meusanuncios = EventoCompra.objects.all()
     return render(request, 'anuncios.html', {'anuncios': meusanuncios})
+
+
+
+def minhaspropostas(request):
+    minhaspropostas = EventoCompra.objects.all()
+    return render(request, 'proposta_form.html', {'propostas': minhaspropostas})
+
+
+def propostas(request):
+    propostas = Propostas.objects.all()
+    return render(request, 'propostas.html', {'propostas': propostas})
 
 
 def novousuario(request):
