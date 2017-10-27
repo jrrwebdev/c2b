@@ -1,19 +1,19 @@
 from django.contrib import admin
-from core.models import Saler, Buyer, BuyEvent, Category
+from core.models import Vendedor, Comprador, EventoCompra, CategoriaProduto
 
-class BuyEventAdmin(admin.ModelAdmin):
+class EventoCompraAdmin(admin.ModelAdmin):
     # explicitly reference fields to be shown, note image_tag is read-only
-    fields = ('name', 'description', 'category', 'price', 'like', 'photo')
+    fields = ('nomeproduto', 'comprador', 'descricao', 'categoriaproduto', 'preco', 'facebook_likes', 'imagemproduto')
 
-class BuyerAdmin(admin.ModelAdmin):
+class CompradorAdmin(admin.ModelAdmin):
     ''' Comprador.'''
-    fields = ('name',  'email', 'first_name', 'last_name', 'address', 'city', 'state_province', 'country' , 'cpf', 'rg')
+    fields = ('username', 'nome',  'email', 'first_name', 'last_name', 'endereco', 'cidade', 'estado', 'pais' , 'cpf', 'rg')
 
-class SalerAdmin(admin.ModelAdmin):
+class VendedorAdmin(admin.ModelAdmin):
     ''' Vendedor.'''
-    fields = ('username',  'razaosocial', 'address', 'city', 'state_province', 'country' , 'cnpj', 'ie')
+    fields = ('username', 'razaosocial', 'email', 'endereco', 'cidade', 'estado', 'pais' , 'cnpj', 'ie')
 
-admin.site.register(Buyer, BuyerAdmin)
-admin.site.register(Saler, SalerAdmin)
-admin.site.register(BuyEvent, BuyEventAdmin)
-admin.site.register(Category)
+admin.site.register(Comprador, CompradorAdmin)
+admin.site.register(Vendedor, VendedorAdmin)
+admin.site.register(EventoCompra, EventoCompraAdmin)
+admin.site.register(CategoriaProduto)

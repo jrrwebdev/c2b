@@ -3,24 +3,24 @@ from django.db import models
 from utils.lists import CUSTOMER_TYPE, IS_CUSTOMER
 
 
-class Category(models.Model):
+class CategoriaProduto(models.Model):
     """ Class Category - This class to save data from category."""
-    description = models.CharField(max_length=30, null=True)
+    nome = models.CharField(max_length=30, null=True)
 
     def __str__(self):
-        return self.description
+        return self.nome
 
     def get_fields(self):
-        return [(field, field.value_to_string(self)) for field in Category._meta.fields]
+        return [(field, field.value_to_string(self)) for field in CategoriaProduto._meta.fields]
 
 
-class Saler(User):
+class Vendedor(User):
     ''' Vendedor.'''
     razaosocial = models.CharField(max_length=50, null=True)
-    address = models.CharField(max_length=50, null=True)
-    city = models.CharField(max_length=60, null=True)
-    state_province = models.CharField(max_length=30, null=True)
-    country = models.CharField(max_length=50, null=True)
+    endereco = models.CharField(max_length=50, null=True, blank=True)
+    cidade = models.CharField(max_length=60, null=True, blank=True)
+    estado = models.CharField(max_length=30, null=True, blank=True)
+    pais = models.CharField(max_length=50, null=True, blank=True)
     cnpj = models.CharField('CNPJ', max_length=14,
                             unique=True, null=True, blank=True)
     ie = models.CharField(u'inscrição estadual',
@@ -34,13 +34,13 @@ class Saler(User):
         return str(self.razaosocial)
 
 
-class Buyer(User):
+class Comprador(User):
     ''' Comprador.'''
-    name = models.CharField(max_length=50, null=True)
-    address = models.CharField(max_length=50, null=True)
-    city = models.CharField(max_length=60, null=True)
-    state_province = models.CharField(max_length=30, null=True)
-    country = models.CharField(max_length=50, null=True)
+    nome = models.CharField(max_length=50, null=True)
+    endereco = models.CharField(max_length=50, null=True,  blank=True)
+    cidade = models.CharField(max_length=60, null=True, blank=True)
+    estado = models.CharField(max_length=30, null=True, blank=True)
+    pais = models.CharField(max_length=50, null=True, blank=True)
     cpf = models.CharField('CPF', max_length=11,
                            unique=True, null=True, blank=True)
     rg = models.CharField('RG', max_length=11, null=True, blank=True)
@@ -53,14 +53,19 @@ class Buyer(User):
         return str(self.email)
 
 
-class BuyEvent(models.Model):
+class EventoCompra(models.Model):
     """Evento de Compra de Produto."""
-    name = models.CharField(max_length=50, null=False)
-    description = models.TextField(blank=True)
-    buyerid = models.ForeignKey(Buyer, null=True)
-    price = models.DecimalField(max_digits=19, decimal_places=2)
-    like = models.IntegerField(default=0)
-    photo = models.ImageField(blank=True)
+    nomeproduto = models.CharField(max_length=50, null=False)
+    descricao = models.TextField(blank=True)
+    comprador = models.ForeignKey(Comprador, null=True)
+    categoriaproduto = models.ForeignKey(CategoriaProduto, null=True)
+    preco = models.DecimalField(max_digits=19, decimal_places=2, blank=True)
+    facebook_likes = models.IntegerField(default=0)
+    imagemproduto = models.ImageField(blank=True)
+
+    class Meta:
+        verbose_name = 'eventocompra'
+        verbose_name_plural = 'eventoscompras'
 
     def __str__(self):
-        return self.name
+        return self.nomeproduto

@@ -1,21 +1,21 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth.models import User
-from .models import Saler, Buyer, BuyEvent
+from .models import Vendedor, Comprador, EventoCompra
 
 
-class SalerForm(UserCreationForm):
+class VendedorForm(UserCreationForm):
     class Meta:
-        model = Saler
+        model = Vendedor
         fields = ('username',
                   'email',
                   'password1',
                   'password2',
                   'razaosocial',
-                  'address',
-                  'city',
-                  'state_province',
-                  'country',
+                  'endereco',
+                  'cidade',
+                  'estado',
+                  'pais',
                   'cnpj',
                   'ie'
                   )
@@ -24,40 +24,40 @@ class SalerForm(UserCreationForm):
             'username': ('Nome do usuario (login)'),
             'razaosocial': ('Razao Social'),
             'email': ('Email'),
-            'address': ('Endereço'),
-            'city': ('Cidade '),
-            'state_province': ('Estado'),
-            'country': ('Pais'),
+            'endereco': ('Endereço'),
+            'cidade': ('Cidade '),
+            'estado': ('Estado'),
+            'pais': ('Pais'),
             'cnpj': ('CNPJ:'),
             'ie': ('IE'),
         }
         # field_classes = {'username': UsernameField}
 
 
-class BuyerForm(UserCreationForm):
+class CompradorForm(UserCreationForm):
     class Meta:
-        model = Buyer
+        model = Comprador
         fields = ('username',
                   'email',
                   'password1',
                   'password2',
-                  'name',
-                  'address',
-                  'city',
-                  'state_province',
-                  'country',
+                  'nome',
+                  'endereco',
+                  'cidade',
+                  'estado',
+                  'pais',
                   'rg',
                   'cpf',
                   )
 
         labels = {
             'username': ('Nome do usuario (login)'),
-            'name': ('Nome'),
+            'nome': ('Nome'),
             'email': ('Email'),
-            'address': ('Endereço'),
-            'city': ('Cidade '),
-            'state_province': ('Estado'),
-            'country': ('Pais'),
+            'endereco': ('Endereço'),
+            'cidade': ('Cidade '),
+            'estado': ('Estado'),
+            'pais': ('Pais'),
             'rg': ('RG'),
             'cpf': ('CPF'),
         }
@@ -66,11 +66,11 @@ class BuyerForm(UserCreationForm):
 
 class AnunciarForm(forms.ModelForm):
     class Meta:
-        model = BuyEvent
-        fields = ('name', 'price', 'photo')
+        model = EventoCompra
+        fields = ('nomeproduto', 'categoriaproduto', 'preco', 'imagemproduto')
         labels = {
-            'name': ('Produto Desejado'),
-            'description': ('Descricao'),
-            'price': ('Preco Desejado'),
-            'photo': ('Fotografia')
+            'nomeproduto': ('Produto Desejado'),
+            'descricao': ('Descricao'),
+            'preco': ('Preco Desejado'),
+            'imagemproduto': ('Fotografia')
         }

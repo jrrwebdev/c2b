@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
               type="text/css">
-        <link rel="stylesheet" href="/css/produtos.css"
+        <link rel="stylesheet" href="{% static 'css/produtos.css' %}"
               type="text/css">
         <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -38,10 +38,18 @@
                     <br>fique atento no seu email, ao encontrarmos um empresa, enviaremos um email</p>
 
                 {% if user.is_authenticated %}
-                    <p class="lead mb-5">Olá {{ user.first_name }} seja bem-vindo!</p>
+
+                    {% if anuncio.comprador != user.email %}
+                        <p class="lead mb-5">Olá vendedor {{ vendedores.razaosocial }} seja bem-vindo!</p>
+                    {% else %}
+
+                        <p class="lead mb-5">Olá {{ user.first_name }} seja bem-vindo!</p>
+                    {% endif %}
                 {% else %}
                     <p class="lead mb-5">Parece que você ainda não fez login no site!</p>
+
                 {% endif %}
+
                 {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
@@ -57,47 +65,54 @@
                             <div class="row">
                                 <div class="col-md-5 col-sm-12 col-xs-12">
                                     <div class="product-image">
-                                        <img src="{{ MEDIA_ROOT }}{{ anuncio.photo }}" alt="194x228" class="img-responsive">
+                                        <img src="{{ MEDIA_ROOT }}{{ anuncio.imagemproduto }}" alt="194x228"
+                                             class="img-responsive">
                                         <span class="tag2 sale">Oferta</span>
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-sm-12 col-xs-12">
-                                    <div class="product-deatil">
+                                    <div class="product-detail">
+                                        <h5> {{ anuncio.categoriaproduto }} </h5>
+
+
                                         <h5 class="name">
                                             <a href="#">
-                                                {{ anuncio.name }}<span>{{ anuncio.category }}</span>
+                                                {{ anuncio.nomeproduto }}<span></span>
                                             </a>
                                         </h5>
                                         <p class="price-container">
-                                            <span>{{ anuncio.price }}</span>
+                                            <span>{{ anuncio.preco }}</span>
                                         </p>
                                         <span class="tag1"></span>
                                     </div>
                                     <div class="description">
-                                        <p> {{ anuncio.name }}</p>
+                                        <p> {{ anuncio.descricao }}</p>
                                     </div>
                                     <div class="product-info smart-form">
                                         <div class="row">
                                             <div class="col-md-12">
 
                                                 {% if user.is_authenticated %}
+                                                    {#                                                    <h1> Comprador {{ anuncio.comprador }}{{ user.email }}</h1>#}
+                                                    {% if anuncio.comprador != user.email %}
 
-                                                    <a href="javascript:void(0);" class="btn btn-primary">Eu Vendo Isso
-                                                        hein!</a>
-                                                    <a href="javascript:void(0);" class="btn btn-primary">Fazer
-                                                        Contra-proposta</a>
-                                                {% else %}
-
+                                                        <a href="javascript:void(0);" class="btn btn-primary">Eu Vendo
+                                                            Isso
+                                                            hein!</a>
+                                                        <a href="javascript:void(0);" class="btn btn-primary">Fazer
+                                                            Contra-proposta</a>
+                                                    {% else %}
                                                         <a href="javascript:void(0);" class="btn btn-primary">Editar
                                                             Anuncio</a>
                                                         <a href="javascript:void(0);" class="btn btn-primary">Verificar
                                                             Propostas</a>
+                                                    {% endif %}
 
                                                 {% endif %}
 
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="rating">  {{ anuncio.like }}
+                                                <div class="rating">  {{ anuncio.facebook_likes }}
                                                     <label for="stars-rating-5"><i
                                                             class="fa fa-star text-danger"></i></label>
                                                     <label for="stars-rating-4"><i

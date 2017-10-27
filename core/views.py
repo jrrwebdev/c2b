@@ -5,16 +5,17 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 
 from core import forms
-from core.forms import BuyerForm, SalerForm, AnunciarForm
-from core.models import BuyEvent
+from core.forms import CompradorForm, VendedorForm, AnunciarForm
+from core.models import EventoCompra, Vendedor
 
 
 def home(request):
-    meusanuncios = BuyEvent.objects.all()
+    meusanuncios = EventoCompra.objects.all()
     return render(request, 'home.html', {'anuncios': meusanuncios})
 
+
 def meusanuncios(request):
-    meusanuncios = BuyEvent.objects.all()
+    meusanuncios = EventoCompra.objects.all()
     return render(request, 'anuncios.html', {'anuncios': meusanuncios})
 
 
@@ -25,44 +26,30 @@ def novousuario(request):
 def signupvendedor(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        form = SalerForm(request.POST)
+        form = VendedorForm(request.POST)
         if form.is_valid():
             new_customer = form.save()
             messages.success(request, 'Usuario Adicionado com Sucesso')
             return HttpResponseRedirect(reverse_lazy('sucesso'))
     else:
-        form = SalerForm()
+        form = VendedorForm()
     context = {'form': form}
     return render(request, 'signupvendedor.html', {'form': form}, context)
+
 
 
 def signupcomprador(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        form = BuyerForm(request.POST)
+        form = CompradorForm(request.POST)
         if form.is_valid():
             new_customer = form.save()
             messages.success(request, 'Usuario Adicionado com Sucesso')
             return HttpResponseRedirect(reverse_lazy('sucesso'))
     else:
-        form = BuyerForm()
+        form = CompradorForm()
     context = {'form': form}
     return render(request, 'signupcomprador.html', {'form': form}, context)
-
-
-# @login_required
-def customer_add(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        form = SalerForm(request.POST)
-        if form.is_valid():
-            new_customer = form.save()
-            messages.success(request, 'Usuario Adicionado com Sucesso')
-            return HttpResponseRedirect(reverse_lazy('sucesso'))
-    else:
-        form = SalerForm()
-    context = {'form': form}
-    return render(request, 'customer.html', {'form': form}, context)
 
 
 @login_required

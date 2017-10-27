@@ -34,16 +34,14 @@
         <div class="collapse navbar-collapse" id="mainMenu">
             {% if user.is_authenticated %}
                 <ul class="navbar-nav ml-auto">
-
                     <a href="{% url 'anunciar' %}" class="btn btn-lg mx-1 btn-secondary">Anunciar</a>
-
-
                     <a href="{% url 'logout' %}" class="btn btn-lg mx-1 btn-secondary"">Logout</a>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"> {{ user.username }} </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                            <a class="dropdown-item" <a href="{% url 'customer_add' %}">Minha Conta</a>
+                            <a class="dropdown-item" <a href="#">Minha Conta</a>
                             <a class="dropdown-item" href="{% url 'meusanuncios' %}">Meus Anuncios</a>
                             <a class="dropdown-item" href="{% url 'password_change' %}">Alterar Senha</a>
                             <div class="dropdown-divider"></div>

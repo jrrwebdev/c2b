@@ -15,22 +15,21 @@
 
     <table style="width:100%">
         <tr>
-            <th>Id</th>
-            <th>Descrição</th>
+
+            <th>Nome do Produto</th>
             <th>Categoria</th>
             <th>Valor</th>
-            <th>like</th>
+            <th>Facebook Likes</th>
             <th></th>
         </tr>
 
         {% for anuncio in anuncios %}
             <tr>
-            <td>{{ anuncio.id }} </td>
-            <td>{{ anuncio.name }} </td>
-            <td>{{ anuncio.category  }} </td>
-            <td>{{ anuncio.price }}</td>
-            <td>{{ anuncio.like }}</td>
-            <td><a href="{% url 'likebuyevent' %}" class="btn btn-gray"
+            <td>{{ anuncio.nomeproduto }} </td>
+            <td>{{ anuncio.categoriaproduto  }} </td>
+            <td>{{ anuncio.preco }}</td>
+            <td>{{ anuncio.facebook_likes }}</td>
+            <td><a href="#" class="btn btn-gray"
                    style="background-image: url({% static '/img/Ei-like.svg.png' %})"></a></td>
 
 
