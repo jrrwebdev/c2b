@@ -26,4 +26,4 @@ class Propostas(models.Model):
         verbose_name_plural = 'propostas'
 
     def __str__(self):
-        return self.anuncio
+        return str(self.valorofertado)
