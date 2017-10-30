@@ -17,6 +17,14 @@ Getting Started
 * Make a new virtualenv: ``virtualenv .venv``
 * Activate the virtualenv: ``source .venv/bin/activate``
 * Install Django: ``pip install -r requirements.txt``
+* Crete file ``.env `` and set up configurations like this:
+```
+DEBUG=True
+SECRET_KEY=ARANDOMSECRETKEY
+ALLOWED_HOSTS='*'
+```
+* Run migrations: ``python manage.py migrate``
+* Add superuser: ``python manage.py createsuperuser``
 * Run the server: ``python manage.py runserver``
 * Admin Site at ``http://127.0.0.1:8000/admin``
 
